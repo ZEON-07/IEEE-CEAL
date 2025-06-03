@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background:#f0f0f0;
+}
+.nav-container{
+    border-radius:50px;
+    width:80%;
+    margin: 20px auto;
+    position: relative;
+    overflow: visible;
+}
+
+.nav-bar{
+    background-color: white;
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: 0px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding-right: 30%;
+}
+.logo{
+    padding-left:15%;
+    
+}
+.logo img{
+    height: 50px;
+    width: auto;
+    background-color:#0055A4 ;
+    display: flex;
+    align-items: center;
+    border-radius:20px 0px 0px 20px;
+}
+.nav-links{
+    display: flex;
+    gap:20px;
+    list-style: none;
+    font-weight: bold;
+}
+.nav-links li{
+    margin-top:45px;
+    margin-left:5px;
+    position: relative;
+}
+.nav-links a{
+    text-decoration: none;
+    color:black;
+    padding: 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #FFC107;
+    transition: width 0.3s;
+}
+.nav-links a:hover::after{
+    width: 100%;
+}
+.dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    
+}
+.dropdown-menu li{
+    width: 100%;
+    list-style: none;
+    padding: 10px 20px;
+}
+.dropdown-menu a{
+    padding: 10px;
+    color: black;
+}
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.IEEE button{
+    background-color:#0055A4;
+    color:white;
+    padding: 20px 25px;
+    border-radius:0px 20px 20px 0px;
+    margin-bottom: 25px;
+}
+.IEEE a::after,
+.IEEE a:hover::after {
+    display: none !important;
+    width: 0 !important;
+}
+.IEEE a:hover {
+    color: white !important;
+}
