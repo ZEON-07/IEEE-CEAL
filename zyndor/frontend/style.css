@@ -1,0 +1,99 @@
+:root {
+    --primary: #0055A4;
+    --secondary: #FFFFFF;
+    --accent: #FFC107;
+    --card-shadow: 0 4px 24px #2122223a;
+}
+
+body {
+    background: var(--secondary);
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    min-height: 100vh;
+    color: #222;
+}
+
+.team-container {
+    position: relative;
+    width: 75vw;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #faf6f600;
+}
+
+.person-card {
+    background: var(--secondary);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 28px 22px 22px 22px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+}
+
+.person-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 85, 164, 0.363);
+    transform: translateY(-4px) scale(1.025);
+}
+
+.person-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    margin-bottom: 18px;
+    background: #e3e9f1;
+}
+
+.person-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.person-role {
+    font-size: 1.05rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.person-society {
+    font-size: 0.80rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.person-contact {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.person-contact a {
+    color: var(--primary);
+    font-size: 1.25rem;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.person-contact a:hover {
+    color: var(--accent);
+}
