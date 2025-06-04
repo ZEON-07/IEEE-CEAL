@@ -1,13 +1,11 @@
-body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f8;
-    }
 
-    .footer {
+
+  footer {
       background-color: #0055A4;
       color: #fff;
-      padding: 60px 20px 40px;
+      width: 100%;
+      bottom: 0;
+      position: absolute;
     }
 
     .footer-container {
