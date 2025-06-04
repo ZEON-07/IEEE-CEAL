@@ -12,7 +12,7 @@ const yearSection = document.getElementById('yearSection');
 
 document.getElementById('setYearBtn').onclick = () => {
     year = yearInput.value.trim();
-    if (!year) return alert('Enter a valid year');
+    if (!year || isNaN(year)) return alert('Enter a valid year');
     formSection.style.display = 'flex';
     yearSection.style.display = 'none';
 };
@@ -32,6 +32,9 @@ societySelect.onchange = () => {
 const photoInput = document.getElementById('photo');
 const photoPreview = document.getElementById('photoPreview');
 
+const CLOUD_NAME = "dmiwesddu"; // 🔁 your cloud name
+const UPLOAD_PRESET = "execom"; // 🔁 your unsigned preset
+
 photoInput.onchange = async function () {
     const file = photoInput.files[0];
     if (!file) {
@@ -39,7 +42,6 @@ photoInput.onchange = async function () {
         uploadedPhotoUrl = '';
         return;
     }
-
     const reader = new FileReader();
     reader.onload = function (e) {
         photoPreview.src = e.target.result;
@@ -47,40 +49,27 @@ photoInput.onchange = async function () {
     };
     reader.readAsDataURL(file);
 
-    const base64 = await toBase64(file);
-    const payload = new URLSearchParams({
-        filedata: base64.split(',')[1],
-        filename: file.name,
-        mimetype: file.type
-    });
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", UPLOAD_PRESET);
 
     try {
-        const res = await fetch(photoUploadAPI, {
-            method: 'POST',
-            body: payload,
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+            method: "POST",
+            body: formData
         });
+
         const data = await res.json();
-        if (data.link) {
-            uploadedPhotoUrl = data.link;
+
+        if (data.secure_url) {
             photoPreview.style.boxShadow = '0 0 10px 2px rgba(0, 85, 164, 0.68)';
+            uploadedPhotoUrl = data.secure_url;
         } else {
-            uploadedPhotoUrl = '';
-            alert('Photo upload failed');
+            alert("Upload failed: " + JSON.stringify(data));
         }
     } catch (err) {
-        uploadedPhotoUrl = '';
-        alert('Photo upload error');
+        alert("Error: " + err.message);
     }
-};
-
-function toBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
 }
 
 document.getElementById('addBtn').onclick = () => {
