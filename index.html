@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="style.css">
+    
   </head>
   <body>
   <div class="nav-container">
@@ -12,27 +13,50 @@
       <div class="logo">
         <a href="#"><img src="images/IEEE_SB_CEAL.png" alt=""></a>
       </div>
-      <ul class="nav-links">
-        <li><a class="active" href="#">Home</a></li>
-        <li><a href=#>About</a></li>
-        <li class="dropdown">
-          <a href="#">Societies</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
+      <div class="navhold">
+        <ul class="nav-links">
+          <li><a class="active" href="#">Home</a></li>
+          <li><a href=#>About</a></li>
+          <li class="dropdown">
+            <a href="#">Societies</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">6</a></li>
+              <li><a href="#">7</a></li>
+            </ul>
+          </li>
+          </li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Gallery</a></li>
           </ul>
-        </li>
-        </li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li class="IEEE"><a href="#"><button><pre>JOIN IEEE</pre></button></a></li>
-      </ul>
+      </div>
+      <div class=IEEE>
+          <a href="#"><button><pre>JOIN IEEE</pre></button></a>
+      
+      </div>
     </nav>
   </div>
+<!--<script>
+const navbar = document.querySelector('.nav-bar');
+const minHeight = 70;   // px
+const maxHeight = 120;  // px
+const minPadding = 0;   // px
+const maxPadding = 20;  // px
+const scrollRange = 200; // px over which the navbar expands
+
+window.addEventListener('scroll', function() {
+    let scrollY = Math.min(window.scrollY, scrollRange);
+    let height = minHeight + (maxHeight - minHeight) * (scrollY / scrollRange);
+    let padding = minPadding + (maxPadding - minPadding) * (scrollY / scrollRange);
+    navbar.style.height = height + 'px';
+    navbar.style.paddingTop = padding + 'px';
+    navbar.style.paddingBottom = padding + 'px';
+});
+</script>
+<div style="height: 1500px;"></div>!-->
   </body>
 </html>
