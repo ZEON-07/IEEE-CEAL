@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Execome Enter Form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <button class="go-back-btn" onclick="window.history.back()">Go Back</button>
+    </div>
+    <div class="year-section" id="yearSection">
+        <h2>Enter Year</h2>
+        <input type="text" id="yearInput" placeholder="Enter year" />
+        <button id="setYearBtn">Set Year</button>
+    </div>
+    <div class="main-container">
+        <div id="formSection" style="display: none;">
+            <h3>Enter Detials</h3>
+            <input type="text" id="name" placeholder="Name" />
+            
+            <label for="roleSelect">Select Role:</label>
+            <select id="roleSelect">
+                <option value="" disabled selected>Select Role</option>
+                <option>Chairperson</option>
+                <option>Vice Chair</option>
+                <option>Secretary</option>
+                <!-- <option>Jt Secretary</option>
+                <option>Treasurer</option>
+                <option>Web Master</option>
+                <option>Media Lead</option>
+                <option>Event Coordinator</option>
+                <option>Design Team</option>
+                <option>Content Writer</option>
+                <option>Membership Developer</option>
+                <option>Link Rep</option>
+                <option>Women in [Society]</option> -->
+                <option value="other">Other</option>
+            </select>
+            <input type="text" id="customRole" placeholder="Enter role" style="display:none;" />
+
+            <label for="societySelect">Select Society:</label>
+            <select id="societySelect">
+                <option value="" disabled selected>Select Society</option>
+                <option>IEEE CEAL</option>
+                <option>SPS</option>
+                <option>RAS</option>
+                <option>WIE</option>
+                <option>IAS</option>
+                <option>PES</option>
+                <option>PELS</option>
+                <option>CS</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="text" id="customSociety" placeholder="Enter society" style="display:none;" />
+
+            <input type="file" id="photo" accept="image/*" />
+            <img id="photoPreview" src="" alt="Photo Preview" class="photoPreview"/>
+            <input type="email" id="email" placeholder="Email" />
+            <input type="text" id="linkedin" placeholder="LinkedIn Username" />
+            <input type="text" id="instagram" placeholder="Instagram ID" />
+
+            <button id="addBtn">Add Detials</button>
+            <ol id="peopleList"></ul>
+
+            <button id="uploadBtn" style="display:none">Upload</button>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
