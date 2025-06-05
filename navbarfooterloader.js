@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("./Nav_bar.html")
+    // Load navbar from site root
+    fetch("/Nav_bar.html")
         .then(res => res.text())
         .then(data => {
             document.getElementById("NavBar").innerHTML = data;
@@ -16,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-    fetch("./Footer.html")
+    // Load footer from site root
+    fetch("/Footer.html")
         .then(res => res.text())
         .then(data => {
             document.getElementById("Footer").innerHTML = data;

@@ -85,6 +85,101 @@ html {
     background-color: #003d80;
 }
 
+/* executive section */
+#executivediv{
+    display: none;
+}
+.execom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.team-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25vw;
+    align-items: center;
+    justify-content: center;
+    margin: 7vw auto;
+    margin-top: 10vw;
+    background-color: #faf6f600;
+    max-width: 100%;
+}
+
+.person-card {
+    background: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 24px #2122223a;
+    padding: 28px 22px 22px 22px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+}
+
+.person-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 85, 164, 0.363);
+    transform: translateY(-4px) scale(1.025);
+}
+
+.person-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: fill;
+    border: 3px solid var(--primary-color);
+    background: #e3e9f1;
+}
+
+.person-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.person-role {
+    font-size: 1.05rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.person-society {
+    font-size: 0.80rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.person-contact {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.person-contact a {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.person-contact a:hover {
+    color: var(--accent-color);
+}
+
 /* Contact Section */
 
 .container {
@@ -212,7 +307,5 @@ form submit {
     text-decoration: underline;
     text-decoration-thickness: 4px;
     text-underline-offset: 8px;
-    width: 50%;
     text-decoration-color: #FFC107;
 }
-
