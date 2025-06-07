@@ -1,0 +1,197 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav {
+  display: flex;
+  gap: 2px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-tab {
+  background: #f0f0f0;
+  border: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0;
+  color: #222;
+  transition: background 0.2s;
+}
+
+.main-tab.active,
+.main-tab:hover {
+  background: #0055a4;
+  color: #fff;
+}
+
+.sub-nav {
+  display: flex;
+  gap: 2px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #eee;
+  padding: 6px 0 6px 12px;
+}
+
+.sub-tab {
+  background: #e3e8f0;
+  border: none;
+  padding: 7px 18px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  color: #222;
+  border-radius: 0;
+  transition: background 0.2s;
+}
+
+.sub-tab.active,
+.sub-tab:hover {
+  background: #0055a4;
+  color: #fff;
+}
+
+.section {
+  max-width: 420px;
+  margin: 32px auto 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 24px 18px;
+  display: block;
+}
+
+.black-page {
+  background: #111;
+  color: #fff;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.year-label {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.yearInput {
+  width: 60px;
+  font-size: 0.95rem;
+}
+
+input,
+select,
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+ol {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+/* Login Box Styles */
+#loginBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginBox>div {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0002;
+  min-width: 260px;
+}
+
+#loginBox h2 {
+  margin-bottom: 16px;
+}
+
+#loginBox input {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#loginBtn {
+  width: 100%;
+}
+
+#loginError {
+  color: red;
+  display: none;
+  margin-top: 10px;
+}
+
+/* Loading Popup */
+#loadingPopup {
+  display: none;
+  /* Fix: Hide by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff8;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#loadingPopup>div {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0002;
+  font-size: 1.2rem;
+}
+
+/* Hide all sub-navs and sections by default */
+.sub-nav,
+.section {
+  display: none;
+}
+
+/* Show only the active sub-nav and section */
+.sub-nav.active,
+.section.active {
+  display: flex;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Hide upload button by default */
+#uploadBtn {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .section {
+    max-width: 98vw;
+    padding: 12px 2vw;
+  }
+}

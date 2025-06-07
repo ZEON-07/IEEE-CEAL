@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Execom Admin</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="loginBox">
+        <div>
+            <h2>Admin Login</h2>
+            <input type="text" id="loginName" placeholder="Enter your name" />
+            <input type="password" id="loginPassword" placeholder="Enter password" />
+            <button id="loginBtn">Login</button>
+            <div id="loginError">Wrong password</div>
+        </div>
+    </div>
+    <div class="main-nav">
+        <button class="main-tab" data-tab="execom">Execom</button>
+        <button class="main-tab" data-tab="event">Event</button>
+        <button class="main-tab" data-tab="gallery">Gallery</button>
+    </div>
+    <div id="subNavExecom" class="sub-nav">
+        <button class="sub-tab" data-section="execom-upload">Upload</button>
+        <button class="sub-tab" data-section="execom-edit">Edit</button>
+        <button class="sub-tab" data-section="execom-delete">Delete</button>
+    </div>
+    <div id="subNavEvent" class="sub-nav">
+        <button class="sub-tab" data-section="event-upload">Upload</button>
+        <button class="sub-tab" data-section="event-edit">Edit</button>
+        <button class="sub-tab" data-section="event-delete">Delete</button>
+    </div>
+    <div id="subNavGallery" class="sub-nav">
+        <button class="sub-tab" data-section="gallery-upload">Upload</button>
+    </div>
+
+    <div id="execom-upload" class="section">
+        <div class="year-label">
+            Year: <input type="text" id="staticYear" value="2025" class="yearInput" />
+        </div>
+        <form id="execomForm" autocomplete="off" onsubmit="return false;">
+            <input type="text" id="name" placeholder="Name" />
+            <select id="roleDropdown">
+                <option value="">Select Role</option>
+            </select>
+            <select id="societyDropdown">
+                <option value="">Select Society</option>
+            </select>
+            <input type="file" id="photo" accept="image/*" />
+            <div id="preview"></div>
+            <button id="imguploadBtn" type="button">upload</button>
+            <input type="email" id="email" placeholder="Email" />
+            <input type="text" id="linkedin" placeholder="LinkedIn Username" />
+            <input type="text" id="instagram" placeholder="Instagram ID" />
+            <button id="addBtn" type="button">Add</button>
+        </form>
+        <ol id="peopleList"></ol>
+        <button id="uploadBtn">Upload</button>
+    </div>
+    <div id="execom-edit" class="section black-page">Edit Page</div>
+    <div id="execom-delete" class="section black-page">Delete Page</div>
+    <div id="event-upload" class="section black-page">Event Upload</div>
+    <div id="event-edit" class="section black-page">Event Edit</div>
+    <div id="event-delete" class="section black-page">Event Delete</div>
+    <div id="gallery-upload" class="section black-page">Gallery Upload</div>
+
+    <div id="loadingPopup">
+        <div>Uploading, please wait...</div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
