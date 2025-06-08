@@ -59,24 +59,13 @@ body {
 }
 
 .section {
-  max-width: 420px;
+  width: 80vw;
   margin: 32px auto 0 auto;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0001;
   padding: 24px 18px;
   display: block;
 }
 
-.black-page {
-  background: #111;
-  color: #fff;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
 
 .year-label {
   font-size: 0.95rem;
@@ -187,6 +176,42 @@ ol {
 /* Hide upload button by default */
 #uploadBtn {
   display: none;
+}
+
+/* Execom Edit Page Styles */
+.edit-person-form {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+  background: #fafbfc;
+}
+.edit-person-form input,
+.edit-person-form select {
+  width: 90px;
+  font-size: 1em;
+  padding: 2px 4px;
+  margin: 0;
+}
+.edit-person-form input[type="email"] {
+  width: 120px;
+}
+.edit-person-form input[name="photo"] {
+  width: 120px;
+}
+.edit-person-form button {
+  width: 70px;
+  padding: 2px 4px;
+  font-size: 1em;
+  margin: 0;
+}
+.edit-status {
+  font-size: 0.95em;
+  color: #555;
+  margin-left: 6px;
 }
 
 @media (max-width: 600px) {

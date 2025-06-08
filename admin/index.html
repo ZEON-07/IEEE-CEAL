@@ -12,29 +12,28 @@
     <div id="loginBox">
         <div>
             <h2>Admin Login</h2>
-            <input type="text" id="loginName" placeholder="Enter your name" />
             <input type="password" id="loginPassword" placeholder="Enter password" />
             <button id="loginBtn">Login</button>
             <div id="loginError">Wrong password</div>
         </div>
     </div>
     <div class="main-nav">
-        <button class="main-tab" data-tab="execom">Execom</button>
-        <button class="main-tab" data-tab="event">Event</button>
-        <button class="main-tab" data-tab="gallery">Gallery</button>
+        <button id="execomTab" class="main-tab">Execom</button>
+        <button id="eventTab" class="main-tab">Event</button>
+        <button id="galleryTab" class="main-tab">Gallery</button>
     </div>
     <div id="subNavExecom" class="sub-nav">
-        <button class="sub-tab" data-section="execom-upload">Upload</button>
-        <button class="sub-tab" data-section="execom-edit">Edit</button>
-        <button class="sub-tab" data-section="execom-delete">Delete</button>
+        <button id="execomUploadTab" class="sub-tab">Upload</button>
+        <button id="execomEditTab" class="sub-tab">Edit</button>
+        <button id="execomDeleteTab" class="sub-tab">Delete</button>
     </div>
     <div id="subNavEvent" class="sub-nav">
-        <button class="sub-tab" data-section="event-upload">Upload</button>
-        <button class="sub-tab" data-section="event-edit">Edit</button>
-        <button class="sub-tab" data-section="event-delete">Delete</button>
+        <button id="eventUploadTab" class="sub-tab">Upload</button>
+        <button id="eventEditTab" class="sub-tab">Edit</button>
+        <button id="eventDeleteTab" class="sub-tab">Delete</button>
     </div>
     <div id="subNavGallery" class="sub-nav">
-        <button class="sub-tab" data-section="gallery-upload">Upload</button>
+        <button id="galleryUploadTab" class="sub-tab">Upload</button>
     </div>
 
     <div id="execom-upload" class="section">
@@ -42,7 +41,7 @@
             Year: <input type="text" id="staticYear" value="2025" class="yearInput" />
         </div>
         <form id="execomForm" autocomplete="off" onsubmit="return false;">
-            <input type="text" id="name" placeholder="Name" />
+            <input type="text" id="name" placeholder="Name" value="aromal" />
             <select id="roleDropdown">
                 <option value="">Select Role</option>
             </select>
@@ -60,12 +59,12 @@
         <ol id="peopleList"></ol>
         <button id="uploadBtn">Upload</button>
     </div>
-    <div id="execom-edit" class="section black-page">Edit Page</div>
-    <div id="execom-delete" class="section black-page">Delete Page</div>
-    <div id="event-upload" class="section black-page">Event Upload</div>
-    <div id="event-edit" class="section black-page">Event Edit</div>
-    <div id="event-delete" class="section black-page">Event Delete</div>
-    <div id="gallery-upload" class="section black-page">Gallery Upload</div>
+    <div id="execom-edit" class="section"></div>
+    <div id="execom-delete" class="section">Delete Page</div>
+    <div id="event-upload" class="section">Event Upload</div>
+    <div id="event-edit" class="section">Event Edit</div>
+    <div id="event-delete" class="section">Event Delete</div>
+    <div id="gallery-upload" class="section">Gallery Upload</div>
 
     <div id="loadingPopup">
         <div>Uploading, please wait...</div>
