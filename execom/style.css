@@ -24,20 +24,14 @@ html {
 }
 
 .team-container {
-    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 2vw;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 7vw auto 0 auto;
-    margin-top: 10vw;
-    width: 60vw;
-    max-width: 100%;
-    height: 100vw;
-    background-color: #faf6f600;
-}
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:2vw;
+    animation:fadeinUp 1s ease-in-out;
+    
 
+}
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -54,29 +48,32 @@ html {
     background: var(--secondary);
     border-radius: 10px;
     box-shadow: var(--card-shadow);
-    padding: 28px 22px 22px 22px;
+    padding: 5vh;
     width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: box-shadow 2s, transform 2s;
+   transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1), transform 0.3s cubic-bezier(.25,.8,.25,1);
     position: relative;
     opacity: 0;
-    animation: fadeInUp 4s forwards;
 }
+.person-card.animate-in{
+    opacity: 1;
+    animation: fadeInUp 0.7s cubic-bezier(.25,.8,.25,1) forwards;
+    animation-delay: var(--card-delay, 0s);
 
+}
 .person-card:hover {
-    box-shadow: 0 8px 32px rgba(0, 85, 164, 0.363);
-    transform: translateY(-4px) scale(1.025);
+    box-shadow: 0 8px 32px rgba(4, 97, 184, 0.363);
+    transform: translateY(-8px) scale(1.1);
 }
 
 .person-card:hover .person-photo {
-    transform: translateY(-4px) scale(1.025);
-    width: 110px;
-    height: 110px;
-    box-shadow: 0 8px 32px #ffc10781;
-    border: 2px solid var(--accent);
-    border-radius: 40%;
+    transform:scale(1) ;
+    width: 15vh;
+    height: 15vh;
+    box-shadow: 0 8px 32px;
+    color: var(--primary);
 }
 
 .team-container .person-card {
@@ -90,7 +87,7 @@ html {
     border-radius: 50%;
     object-fit: cover;
     background: #e3e9f1;
-    transition: width 3s, height 3s, transform 3s, border 5s,border-radius 5s,box-shadow 5s,;
+    /*transition: width 3s, height 3s, transform 3s;*/
 }
 
 .person-name {
@@ -103,15 +100,15 @@ html {
 
 .person-role {
     font-size: 1.05rem;
-    color: #333;
-    font-weight: 500;
+    color:var(--primary);
+    font-weight: 600;
     margin-bottom: 2px;
     text-align: center;
 }
 
 .person-society {
-    font-size: 0.80rem;
-    color: var(--accent);
+    font-size: 1rem;
+    color: black;
     font-weight: 600;
     margin-bottom: 12px;
     text-align: center;
@@ -120,14 +117,14 @@ html {
 
 .person-contact {
     display: flex;
-    gap: 18px;
+    gap: 2vw;
     justify-content: center;
     margin-top: 12px;
 }
 
 .person-contact a {
     color: var(--primary);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     transition: color 0.2s;
     text-decoration: none;
 }
@@ -137,15 +134,32 @@ html {
 }
 
 .society-header {
-    text-align: left;
-    margin-left: 0.5vw;
-    margin-bottom: 0.5vw;
-    font-size: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    /*border-right: 2px solid var(--accent);*/
+    width: 0;
+    animation: typing 2s steps(20, end) forwards;
     color: var(--primary);
-    font-weight: 700;
-    letter-spacing: 1px;
-    width: 100%;
-    animation: fadeInUp 2s forwards;
+    margin-right:50vw;
+    
+
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 15ch }
+}
+
+/*@keyframes blink-cursor {
+    0%, 100% { border-color: var(--accent); }
+    50% { border-color: transparent; }
+}*/
+.society-header::after{
+    content:"";
+    display: block;
+    width: 5vw;
+    height: 3px;
+    background-color: var(--accent);
+    margin-top: 0.5vw;
 }
 
 .society-container {
@@ -155,4 +169,70 @@ html {
     gap: 1.5vw 1.5vw;
     margin-bottom: 2vw;
     width: 100%;
+}
+
+.landing-page-execom {
+    height: 100vh;
+    width: 100%;
+    background: url('/images/ieee-ceal-2k25.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-attachment: fixed;
+}
+
+.landing-page-execom::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+    z-index: 2;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 20px 20vh 0;
+}
+
+.landing-content h1 {
+    font-size: 4rem;
+    margin: 0px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: -3vh;
+}
+
+.landing-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+
+.landing-content a{
+    background-color: #0055A4;
+    color: white;
+    padding: 15px 32px;
+    margin-top:10vh;
+    position: relative;
+    top:5vh;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.landing-content a:hover {
+    background-color:#00376b;
 }
