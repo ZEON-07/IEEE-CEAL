@@ -52,7 +52,7 @@ function CreateSocietySections(societies) {
         teamDiv.appendChild(societyContainer);
     });
 }
-//generate by github copilot there is issue when scroll down there is little pop up issue  
+//generate by github copilot there is issue when scroll down there is little pop up issue (fixed)
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
