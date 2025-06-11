@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE CEAL Events</title>
+    <style>
+        :root {
+            --primary-color: #0055A4;
+            --secondary-color: #FFFFFF;
+            --accent-color: #FFC107;
+            --text-color: #333333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--secondary-color);
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 ,h3 {
+            text-align: center;
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 0.4em;
+            text-decoration-color: var(--accent-color);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 30px;
+        }
+        .half {
+            flex: 1 1 320px;
+            max-width: 50%;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .event-card, .past-image-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 24px;
+            margin-bottom: 20px;
+            width: 102%;
+            max-width: 400px;
+            height: 110vh;
+            text-align: center;
+            display: none;
+        }
+        .event-card.active, .past-image-card.active {
+            display: block;
+          
+        }
+        .event-card a, .past-image-card a {
+            display: inline-block;
+            margin-top: 1vh;
+            color: var(--secondary-color);
+            background: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .past-image-card a{
+            margin-top: 12vh;
+        }
+
+        .event-card a:hover, .past-image-card a:hover {
+            background: var(--primary-color);
+        }
+        .past-image-card img {
+            width: 100%;
+            max-width: 200vh;
+            height: 50vh;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            background: var(--secondary-color);
+        }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12vm;
+            margin-top: 8px;
+        }
+        .slider-controls button {
+            padding: 6px 12px;
+            font-size: 1.2rem;
+            border: none;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .slider-controls button:hover {
+            background: #d0d0d0;
+        }
+        #past-slider {
+          margin-right: 3vw;
+        }
+        .event-poster-container {
+            margin-top: 18px 0;
+            text-align: center;
+        }
+        .event-poster-container h4 {
+            margin-bottom: 8px;
+            margin-top: 1px;
+            color: var(--primary-color);
+        }
+        .half strong,p,ul{
+            text-align: left;
+            display: block;
+        }
+        .half strong {
+            color: var(--primary-color);
+            padding-bottom: 0.5vh;
+        }
+        .half p {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>IEEE CEAL Events</h1>
+    <div class="container">
+        <div class="half" id="upcoming-half">
+            <h2>Upcoming Events</h2>
+            <div class="event-card active">
+                <h3>Tech Symposium 2024</h3>
+                <p><strong>Date:</strong> July 15, 2025</p>
+                <p><strong>Location:</strong> Main Auditorium, CEAL</p>
+                <p><strong>College:</strong> College of Engineering and Applied Learning (CEAL)</p>
+                <p><strong>Society:</strong> IEEE Student Branch</p>
+                <p><strong>Organizers:</strong> <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                </ul></p>
+                <div class="event-poster-container">
+                    <h4>Event Poster</h4>
+                    <img class="event-poster" src="download.jpeg" alt="Tech Symposium 2024 Poster">
+                </div>
+                <p>Join us for a day of insightful talks and networking with industry leaders in technology and engineering.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="event-card">
+                <h3>Robotics Workshop</h3>
+                <p><strong>Date:</strong> August 10, 2025</p>
+                <p><strong>Location:</strong> Lab 3, CEAL</p>
+                <p><strong>College:</strong> College of Engineering and Applied Learning (CEAL)</p>
+                <p><strong>Society:</strong> IEEE Student Branch</p>
+                <p><strong>Organizers:</strong> <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                </ul></p>
+                 <div class="event-poster-container">
+                    <h4>Event Poster</h4>
+                    <img class="event-poster" src="download (1).jpeg" alt="Tech Symposium 2024 Poster">
+                </div>
+                <p>Hands-on workshop introducing the basics of robotics and automation. Open to all students.</p>
+                <a href="#">Register Now</a>
+            </div>
+            <div class="event-card">
+                <h3>IEEE Hackathon</h3>
+                <p><strong>Date:</strong> September 5-6, 2025</p>
+                <p><strong>Location:</strong> Innovation Hub, CEAL</p>
+                <p><strong>College:</strong> College of Engineering and Applied Learning (CEAL)</p>
+                <p><strong>Society:</strong> IEEE Student Branch</p>
+                <p><strong>Organizers:</strong> <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                </ul></p>
+                 <div class="event-poster-container">
+                    <h4>Event Poster</h4>
+                    <img class="event-poster" src="images.jpeg" alt="Tech Symposium 2024 Poster">
+                </div>
+                <p>Form teams and solve real-world problems in our annual hackathon. Prizes for top solutions!</p>
+                <a href="#">Sign Up</a>
+            </div>
+
+            <!--------------------------------end of upcoming events---------------------------------------->
+           
+            <!--slider-->
+            <div class="slider-controls" id="event-slider-controls">
+                <button type="button" data-dir="-1">&#x27E8;</button>
+                <button type="button" data-dir="1">&#x27E9;</button>
+            </div>
+        </div>
+
+        <!-------------------------------Past Event Section-------------------->
+        <div class="half">
+            <h2>Past Event Highlights</h2>
+            <div id="past-slider">
+                <div class="past-image-card active">
+                    <img src="download.jpeg" alt="Past Event 1">
+                    <h3>AI Seminar 2023</h3>
+                    <p><strong>Date:</strong> July 20, 2023</p>
+                    <p><strong>Society:</strong> IEEE Student Branch</p>
+                    <p><strong>Organizers:</strong>
+                    <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                    </ul></p>
+                    <a href="#">View Highlights</a>
+                </div>
+                
+                <div class="past-image-card">
+                    <img src="download (1).jpeg" alt="Past Event 2">
+                    <h3>Coding Bootcamp 2023</h3>
+                    <p><strong>Date:</strong> September 5-6, 2024</p>
+                    <p><strong>Society:</strong> IEEE Student Branch</p>
+                     <p><strong>Organizers:</strong>
+                    <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                    </ul></p>
+                    <a href="#">View Highlights</a>
+                </div>
+                <div class="past-image-card">
+                    <img src="images.jpeg" alt="Past Event 3">
+                    <h3>Women in Tech Panel 2022</h3>
+                    <p><strong>Date:</strong> September 5-6, 2024</p>
+                    <p><strong>Society:</strong> IEEE Student Branch</p>
+                     <p><strong>Organizers:</strong>
+                    <ul>
+                    <li>COMPUTER SOCIETY</li>
+                    <li>Robotics Club</li>
+                    <li>Dr. A. Kumar</li>
+                    </ul></p>
+                    <a href="#">View Highlights</a>
+                </div>
+            </div>
+            <div class="slider-controls" id="past-slider-controls">
+                <button type="button" data-dir="-1">&#x27E8;</button>
+                <button type="button" data-dir="1">&#x27E9;</button>
+            </div>
+        </div>
+    </div>
+
+<!-- JavaScript for slider -->
+    <script>
+        function slider(cardSelector, controlSelector) {
+            const cards = document.querySelectorAll(cardSelector);
+            const controls = document.querySelector(controlSelector);
+            let idx = 0;
+            function show(i) {
+                cards.forEach((card, j) => {
+                    card.classList.toggle('active', i === j);
+                });
+            }
+            if (cards.length < 2) {
+                controls.style.display = 'none';
+                show(0);
+                return;
+            }
+            controls.addEventListener('click', e => {
+                if (e.target.tagName !== 'BUTTON') return;
+                const dir = parseInt(e.target.getAttribute('data-dir'), 10);
+                idx = (idx + dir + cards.length) % cards.length;
+                show(idx);
+            });
+            show(idx);
+        }
+        slider('#upcoming-half .event-card', '#event-slider-controls');
+        slider('#past-slider .past-image-card', '#past-slider-controls');
+
+    </script>
+
+    <!-- filters events based on date -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        function parseDate(str) {
+            const match = /([A-Za-z]+) (\d+)(?:-(\d+))?, (\d{4})/.exec(str);
+            if (!match) return null;
+            const [ , month, startDay, endDay, year ] = match;
+            const day = endDay ? endDay : startDay;
+            return new Date(`${month} ${day}, ${year}`);
+        }
+
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        function filterCards(cardSelector, sliderId, isUpcoming) {
+            const cards = document.querySelectorAll(cardSelector);
+            let found = false;
+            cards.forEach(card => {
+                const dateMatch = card.innerHTML.match(/<strong>Date:<\/strong>\s*([^<]+)/i);
+                const dateStr = dateMatch ? dateMatch[1].trim() : '';
+                const eventDate = parseDate(dateStr);
+                const show = eventDate && ((isUpcoming && eventDate >= today) || (!isUpcoming && eventDate < today));
+                card.style.display = show ? '' : 'none';
+                card.classList.toggle('active', false);
+                if (show && !found) {
+                    card.classList.add('active');
+                    found = true;
+                }
+            });
+            const slider = document.getElementById(sliderId);
+            if (!found && slider) slider.style.display = 'none';
+        }
+
+        filterCards('#upcoming-half .event-card', 'event-slider-controls', true);
+        filterCards('#past-slider .past-image-card', 'past-slider-controls', false);
+    });
+    </script> 
+    
+</body>
+</html>
