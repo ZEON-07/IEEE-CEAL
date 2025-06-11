@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("/nav-bar.html")
     .then((res) => res.text())
     .then((data) => {
+      console.log("nave bar");
       document.getElementById("NavBar").innerHTML = data;
 
       const navContainer = document.querySelector(".nav-container");
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           navContainer.classList.remove("scrolled");
         }
       });
+      FetchAllYears();
     });
 
   // Load footer from site root
@@ -28,8 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         yearSpan.textContent = new Date().getFullYear();
       }
     });
-  // to load list in navbar
-  FetchAllYears();
 });
 async function FetchAllYears() {
   let res = await fetch(`${API_URL}?allyears`);
@@ -56,4 +56,3 @@ function AddOptions(years) {
     Dropdown.appendChild(list);
   });
 }
-

@@ -1,4 +1,3 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbw9MXA3T0vC4bg1Rwqz7DY8xRAEQ8EjaQGLjZR6SEE90QoXvEWEfpsinLvJRUPfrGyaug/exec';
 document.addEventListener("DOMContentLoaded", function () {
     FetchPeopleByRoles();
 });
