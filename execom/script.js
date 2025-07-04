@@ -3,12 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchPeopleByYear(year);
     document.getElementById('ExecomMainText').innerHTML = `IEEE CEAL ${year} EXECOM`;
 });
-//aromal:task(fetch landing page photo of exicom based on year)
 async function fetchPeopleByYear(year) {
-    let res = await fetch(`${API_URL}?year=${year}`);
+    let res = await fetch(`./data.json`);
     let data = await res.json();
 
-    // Adjusted for new JSON structure
     if (!data || !data.heading || !data.heading.Society) {
         alert("This year details not updated yet");
         return;
@@ -20,15 +18,12 @@ function CreateSocietySections(societies) {
     const teamDiv = document.getElementById('team');
     teamDiv.innerHTML = '';
 
-    // Get society names in the order they appear in the JSON
     Object.keys(societies).forEach(societyName => {
-        // Create society header
         const societyHeader = document.createElement('h1');
         societyHeader.className = 'society-header';
         societyHeader.textContent = societyName;
         teamDiv.appendChild(societyHeader);
 
-        // Create a container for this society's people
         const societyContainer = document.createElement('div');
         societyContainer.className = 'society-container';
 
@@ -36,7 +31,7 @@ function CreateSocietySections(societies) {
             const card = document.createElement('div');
             card.className = 'person-card';
             card.innerHTML = `
-                <img class="person-photo" src="${person.photo_url}" alt="${person.name || ''}" />
+                <img class="person-photo" src="/images/execom_2025/default.png" alt="${person.name || ''}" />
                 <div class="person-name">${person.name || ''}</div>
                 <div class="person-society">${person.society || ''}</div>
                 <div class="person-role">${person.role || ''}</div>
@@ -52,7 +47,6 @@ function CreateSocietySections(societies) {
         teamDiv.appendChild(societyContainer);
     });
 }
-//generate by github copilot there is issue when scroll down there is little pop up issue (fixed)
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -83,7 +77,7 @@ function CreateSocietySections(societies) {
             const card = document.createElement('div');
             card.className = 'person-card';
             card.innerHTML = `
-                <img class="person-photo" src="${person.photo_url}" alt="${person.name || ''}" />
+                <img class="person-photo" src="/images/execom_2025/${person.name}.png" onerror="this.onerror=null; this.src='/images/execom_2025/default.png';" alt="${person.name}" />
                 <div class="person-name">${person.name || ''}</div>
                 <div class="person-society">${person.society || ''}</div>
                 <div class="person-role">${person.role || ''}</div>
@@ -95,7 +89,6 @@ function CreateSocietySections(societies) {
             `;
             societyContainer.appendChild(card);
         });
-
         teamDiv.appendChild(societyContainer);
     });
     observeCards();
