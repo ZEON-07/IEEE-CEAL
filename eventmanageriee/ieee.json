@@ -1,0 +1,166 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Tech Fest",
+      "details": "Annual technical festival",
+      "dateandtime": "2024-12-01 10:00:00",
+      "image_name": "techfest.png",
+      "link": "https://youtu.be/xvFZjo5PgG0?si=2DvMhvhyJKjZrx6b",
+      "clubs": [
+        {
+          "club_name": "Coding Club"
+        },
+        {
+          "club_name": "Robotics Club"
+        }
+
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Alice",
+          "coordinator_number": "9876543210"
+        },
+        {
+          "coordinator_name": "Bob",
+          "coordinator_number": "9123456780"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Cultural Night",
+      "details": "Annual cultural event",
+      "dateandtime": "2025-10-05 18:00:00",
+      "image_name": "culture.png",
+      "link": "https://example.com/culture",
+      "clubs": [
+        {
+          "club_name": "Music Club"
+        },
+        {
+          "club_name": "Drama Club"
+        }
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Carol",
+          "coordinator_number": "9988776655"
+        },
+        {
+          "coordinator_name": "Dave",
+          "coordinator_number": "9877665544"
+        }
+
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Sports Meet",
+      "details": "Inter-college sports competition",
+      "dateandtime": "2025-11-10 09:00:00",
+      "image_name": "sports.png",
+      "link": "https://example.com/sports",
+      "clubs": [
+        {
+          "club_name": "Athletics Club"
+        },
+        {
+          "club_name": "Football Club"
+        }
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Eve",
+          "coordinator_number": "9223344556"
+        },
+        {
+          "coordinator_name": "Frank",
+          "coordinator_number": "9334455667"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Art Exhibition",
+      "details": "Showcase of student artworks",
+      "dateandtime": "2025-12-15 11:00:00",
+      "image_name": "art.png",
+      "link": "https://example.com/art",
+      "clubs": [
+        {
+          "club_name": "Art Club"
+        },
+        {
+          "club_name": "Photography Club"
+        }
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Grace",
+          "coordinator_number": "9445566778"
+        },
+        {
+          "coordinator_name": "Hank",
+          "coordinator_number": "9556677889"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Science Fair",
+      "details": "Exhibition of scientific projects",
+      "dateandtime": "2025-09-20 10:00:00",
+      "image_name": "science.png",
+      "link": "https://example.com/science",
+      "clubs": [
+        {
+          "club_name": "Science Club"
+        },
+        {
+          "club_name": "Math Club"
+        }
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Ivy",
+          "coordinator_number": "9667788990"
+        },
+        {
+          "coordinator_name": "Jack",
+          "coordinator_number": "9778899001"
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "name": "Literary Fest",
+      "details": "Celebration of literature and writing",
+      "dateandtime": "2025-08-25 14:00:00",
+      "image_name": "literary.png",
+      "link": "https://example.com/literary",
+      "clubs": [
+        {
+          "club_name": "Literature Club"
+        },
+        {
+          "club_name": "Debate Club"
+        }
+      ],
+      "coordinators": [
+        {
+          "coordinator_name": "Kate",
+          "coordinator_number": "9889900112"
+        },
+        {
+          "coordinator_name": "Leo",
+          "coordinator_number": "9990011223"
+        }
+      ]
+    }
+  ]
+  
+}
+
+

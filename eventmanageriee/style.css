@@ -1,0 +1,221 @@
+:root {
+    --primary: #0055A4;
+    --primary-dark: #003d7a;
+    --primary-light: #1a6bb8;
+    --secondary: #FFFFFF;
+    --accent: #FFC107;
+    --accent-dark: #e6ac00;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --card-shadow: 0 10px 40px rgba(0, 85, 164, 0.1);
+    --card-shadow-hover: 0 20px 60px rgba(0, 85, 164, 0.2);
+    --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.landing-page {
+    height: 100vh;
+    width: 100%;
+    background: url('image/test.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-attachment: fixed;
+}
+
+.landing-page::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+    z-index: 2;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 20px 20vh 0;
+}
+
+.landing-content h1 {
+    font-size: 4rem;
+    margin: 0px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: -3vh;
+}
+
+.landing-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.explore-btn {
+    background-color: #0055A4;
+    color: white;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.explore-btn:hover {
+    background-color: #003d80;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav-buttons{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 20px;
+     width: 100%; 
+     gap:32px
+}
+.nav-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-light);
+    color:var(--text-light);
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-buttons button:hover {
+  border-color:var(--accent); 
+    color: var(--secondary);
+}
+.nav-buttons button.active {
+    background-color: var(--accent);
+    color: var(--secondary);
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+#card-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap:5vw;
+}
+ .card{
+    max-width: 50vh;
+    max-height:fit-content;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    background: #fff;
+    text-align: center;
+    border: 2px solid transparent;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: var(--transition)
+ }
+ .card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+ }
+.card:hover{
+    box-shadow:var(--card-shadow-hover) ;
+    border-color:var(--accent);
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+.buttons {
+    margin-top: 20px;
+}
+.buttons button {
+    margin: 0 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background: #0072c6;
+    color: #fff;
+    cursor: pointer;
+}
+.register-btn {
+    display: inline-block;
+    margin:0 auto;
+    padding: 8px 20px;
+    background: var(--primary, #0055A4);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.register-btn:hover {
+    background: var(--primary-dark, #003d7a);
+}
+.imageslid img{
+    width: 70%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+}
+.imageslid img:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.deatails h2{
+    font-family:Arial, sans-serif;
+    margin: 2vh;
+}
+.deatails {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detailsrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detailsrow h2,
+.detailsrow p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: left;
+}
+.detailsrow h2 {
+    font-weight: bold;
+    color: var(--primary);
+}
