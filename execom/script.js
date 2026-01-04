@@ -1,17 +1,88 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const year = new URLSearchParams(window.location.search).get("year") || new Date().getFullYear();
-    fetchPeopleByYear(year);
-    document.getElementById('ExecomMainText').innerHTML = `IEEE CEAL ${year} EXECOM`;
+    const requestedYear = new URLSearchParams(window.location.search).get("year") || new Date().getFullYear();
+    fetchPeopleByYear(requestedYear);
 });
-async function fetchPeopleByYear(year) {
-    let res = await fetch(`./data.json`);
-    let data = await res.json();
 
-    if (!data || !data.heading || !data.heading.Society) {
-        alert("This year details not updated yet");
-        return;
+// Fetch available years from the API
+async function fetchAvailableYears() {
+    try {
+        const res = await fetch(`${CONFIG.API_BASE_URL}/allyears/`);
+        const response = await res.json();
+        
+        if (response.allyears && Array.isArray(response.allyears)) {
+            // Sort years in descending order
+            return response.allyears.sort((a, b) => b - a);
+        }
+        return [];
+    } catch (error) {
+        console.error('Error fetching available years:', error);
+        return [];
     }
-    CreateSocietySections(data.heading.Society);
+}
+
+async function fetchPeopleByYear(requestedYear) {
+    try {
+        // First, get the list of available years
+        const availableYears = await fetchAvailableYears();
+        
+        if (availableYears.length === 0) {
+            alert('Unable to fetch available years. Please try again later.');
+            return;
+        }
+
+        // Try to fetch data for the requested year first
+        let yearToTry = requestedYear;
+        let foundData = false;
+        let societies = null;
+
+        // If requested year is not in available years, start from the latest available year
+        if (!availableYears.includes(parseInt(requestedYear))) {
+            console.log(`Year ${requestedYear} not available. Trying latest available year.`);
+            yearToTry = availableYears[0];
+        }
+
+        // Try years in descending order until we find data
+        for (const year of availableYears) {
+            // Skip years newer than requested year
+            if (year > requestedYear) {
+                continue;
+            }
+
+            try {
+                const res = await fetch(`${CONFIG.API_BASE_URL}/GetExecomDataByYear/${year}/`);
+                const response = await res.json();
+
+                // Check if we got valid data
+                if (response.status !== 'error' && response.heading && Object.keys(response.heading.Society).length > 0) {
+                    societies = response.heading.Society;
+                    yearToTry = year;
+                    foundData = true;
+                    break;
+                }
+            } catch (error) {
+                console.error(`Error fetching data for year ${year}:`, error);
+                // Continue to next year
+            }
+        }
+
+        if (!foundData || !societies || societies.length === 0) {
+            alert('No execom data available for any year. Please check back later.');
+            return;
+        }
+
+        // Update the page title with the actual year being displayed
+        document.getElementById('ExecomMainText').innerHTML = `IEEE CEAL ${yearToTry} EXECOM`;
+        
+        // If we're showing a different year than requested, log it
+        if (yearToTry != requestedYear) {
+            console.log(`Showing data for year ${yearToTry} (requested: ${requestedYear})`);
+        }
+
+        CreateSocietySections(societies);
+    } catch (error) {
+        console.error('Error fetching execom data:', error);
+        alert('Failed to load execom data. Please try again later.');
+    }
 }
 
 const observer = new IntersectionObserver((entries, obs) => {
@@ -22,6 +93,7 @@ const observer = new IntersectionObserver((entries, obs) => {
         }
     });
 }, { threshold: 0.2 });
+
 function observeCards() {
     const cards = document.querySelectorAll('.person-card');
     cards.forEach(card => observer.observe(card));
@@ -43,10 +115,14 @@ function CreateSocietySections(societies) {
         societies[societyName].forEach((person, idx) => {
             const card = document.createElement('div');
             card.className = 'person-card';
+            
+            // Use photo_url from backend API response
+            const photoUrl = person.photo_url || `/images/execom_2025/${person.name.toLowerCase().split(' ')[0]}.png`;
+            
             card.innerHTML = `
-                <img class="person-photo" src="/images/execom_2025/${person.photo_url || person.name.toLowerCase().split(' ')[0]}.png" onerror="this.onerror=null; this.src='/images/execom_2025/default.png';" alt="${person.name}" />
+                <img class="person-photo" src="${photoUrl}" onerror="this.onerror=null; this.src='/images/execom_2025/default.png';" alt="${person.name}" />
                 <div class="person-name">${toTitleCase(person.name || '')}</div>
-                <div class="person-society">${person.society || societyName || ''}</div>
+                <div class="person-society">${societyName || ''}</div>
                 <div class="person-role">${toTitleCase(person.role || '')}</div>
                 <div class="person-contact">
                     ${person.email ? `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${person.email}" target="_blank" title="Mail"><i class="fa-solid fa-envelope"></i></a>` : ''}
@@ -67,7 +143,7 @@ function CreateSocietySections(societies) {
 
 function toTitleCase(str) {
     if (!str) {
-      return ""
-  }
-  return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+        return "";
+    }
+    return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
 }
