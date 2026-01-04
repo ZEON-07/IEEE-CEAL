@@ -36,83 +36,125 @@
 
         /* Filter Section */
         .filter-section {
-            background: var(--gradient-card);
+            background: rgba(255, 255, 255, 0.9);
             padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 3rem;
             display: flex;
-            gap: 1.5rem;
+            flex-direction: column;
+            gap: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            align-items: flex-end;
+            gap: 1.5rem;
         }
 
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
+        .year-filters {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .filter-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
+        .year-chip {
+            padding: 0.6rem 1.2rem;
+            background: #f0f2f5;
+            color: var(--text-light);
+            border-radius: 50px;
             font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .filter-group input,
-        .filter-group select {
+        .year-chip:hover {
+            background: #e4e6eb;
+            transform: translateY(-2px);
+        }
+
+        .year-chip.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 85, 164, 0.3);
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .search-input {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1rem 1rem 3rem;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             background: white;
         }
 
-        .filter-group input:focus,
-        .filter-group select:focus {
+        .search-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 85, 164, 0.1);
+            box-shadow: 0 0 0 4px rgba(0, 85, 164, 0.1);
         }
 
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+            pointer-events: none;
         }
 
-        .filter-btn {
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .filter-btn.primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 85, 164, 0.3);
-        }
-
-        .filter-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 85, 164, 0.4);
-        }
-
-        .filter-btn.secondary {
+        .load-more-btn {
             background: white;
             color: var(--primary);
             border: 2px solid var(--primary);
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
-        .filter-btn.secondary:hover {
+        .load-more-btn:hover {
             background: var(--primary);
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 85, 164, 0.25);
+        }
+
+        .load-more-btn i {
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .load-more-btn:hover i {
+            transform: translateY(2px);
         }
 
         /* Gallery Grid */
@@ -373,23 +415,16 @@
 
         <!-- Filter Section -->
         <div class="filter-section">
-            <div class="filter-group">
-                <label for="year-filter">Filter by Year</label>
-                <select id="year-filter">
-                    <option value="">All Years</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="event-filter">Filter by Event</label>
-                <input type="text" id="event-filter" placeholder="Enter event name...">
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn primary" onclick="applyFilters()">
-                    <i class="fas fa-search"></i> Apply Filters
-                </button>
-                <button class="filter-btn secondary" onclick="clearFilters()">
-                    <i class="fas fa-times"></i> Clear
-                </button>
+            <div class="filter-row">
+                <div class="year-filters" id="year-filters">
+                    <div class="year-chip active" onclick="filterByYear('all', this)">All Years</div>
+                    <!-- Years will be populated here -->
+                </div>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="event-filter" class="search-input" placeholder="Search events..."
+                        onkeyup="debounceSearch(this.value)">
+                </div>
             </div>
         </div>
 
@@ -415,6 +450,13 @@
 
         <!-- Gallery Grid -->
         <div id="gallery-grid" class="gallery-grid"></div>
+
+        <!-- Load More Button -->
+        <div id="load-more-container" class="load-more-container" style="display: none;">
+            <button class="load-more-btn" onclick="loadMoreImages()">
+                Load More <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Image Modal -->
@@ -442,26 +484,25 @@
     <script>
         // Gallery data
         let allGalleryImages = [];
-        let currentFilters = {
-            year: '',
-            eventName: ''
-        };
+        let filteredImages = [];
+        let displayedCount = 0;
+        const ITEMS_PER_PAGE = 12;
+        let currentYearFilter = 'all';
+        let currentSearchQuery = '';
 
         // API base URL - Change this to your production domain when deploying
         const API_BASE = 'http://127.0.0.1:8000/api';
 
         // Fetch all gallery images
-        async function fetchGalleryImages(filters = {}) {
+        async function fetchGalleryImages() {
             showLoading();
             hideError();
             hideEmpty();
+            document.getElementById('load-more-container').style.display = 'none';
 
             try {
-                const params = new URLSearchParams();
-                if (filters.year) params.append('year', filters.year);
-                if (filters.eventName) params.append('event_name', filters.eventName);
-
-                const url = `${API_BASE}/gallery/${params.toString() ? '?' + params.toString() : ''}`;
+                // Fetch ALL images initially
+                const url = `${API_BASE}/gallery/`;
                 const response = await fetch(url);
 
                 if (!response.ok) {
@@ -475,12 +516,9 @@
                 }
 
                 allGalleryImages = data.gallery || [];
-                displayGallery(allGalleryImages);
+                applyFilters(); // Initial filter application (shows all)
                 hideLoading();
 
-                if (allGalleryImages.length === 0) {
-                    showEmpty();
-                }
             } catch (error) {
                 console.error('Error fetching gallery:', error);
                 hideLoading();
@@ -494,27 +532,105 @@
                 const response = await fetch(`${API_BASE}/allyears/`);
                 const data = await response.json();
 
-                const yearSelect = document.getElementById('year-filter');
-                data.years.forEach(year => {
-                    const option = document.createElement('option');
-                    option.value = year;
-                    option.textContent = year;
-                    yearSelect.appendChild(option);
+                const yearContainer = document.getElementById('year-filters');
+                // Keep the "All Years" chip and append others
+                const allYearsChip = yearContainer.firstElementChild;
+                yearContainer.innerHTML = '';
+                yearContainer.appendChild(allYearsChip);
+
+                data.allyears.forEach(year => {
+                    const chip = document.createElement('div');
+                    chip.className = 'year-chip';
+                    chip.textContent = year;
+                    chip.onclick = () => filterByYear(year, chip);
+                    yearContainer.appendChild(chip);
                 });
             } catch (error) {
                 console.error('Error fetching years:', error);
             }
         }
 
-        // Display gallery images
-        function displayGallery(images) {
+        // Display gallery images (append mode)
+        function displayGalleryBatch(images) {
             const grid = document.getElementById('gallery-grid');
-            grid.innerHTML = '';
 
             images.forEach(image => {
                 const item = createGalleryItem(image);
                 grid.appendChild(item);
             });
+        }
+
+        function filterByYear(year, element) {
+            // Update UI
+            document.querySelectorAll('.year-chip').forEach(chip => chip.classList.remove('active'));
+            element.classList.add('active');
+
+            currentYearFilter = year;
+            applyFilters();
+        }
+
+        // Debounce search
+        let searchTimeout;
+        function debounceSearch(value) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                currentSearchQuery = value.trim().toLowerCase();
+                applyFilters();
+            }, 300);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = ''; // Clear current grid
+            displayedCount = 0; // Reset count
+            hideEmpty();
+
+            // Filter the master list
+            filteredImages = allGalleryImages.filter(img => {
+                const matchYear = currentYearFilter === 'all' || img.year == currentYearFilter;
+
+                if (!matchYear) return false;
+
+                if (currentSearchQuery.length === 0) return true;
+
+                // Smart Search:
+                // 1. Split query into terms (e.g. "tech 2024" -> ["tech", "2024"])
+                // 2. Check if EVERY term exists in at least one field (Title, Event, Description)
+                const terms = currentSearchQuery.split(' ').filter(t => t.length > 0);
+
+                const searchableText = [
+                    img.title,
+                    img.event_name,
+                    img.description,
+                    formatDate(img.upload_date)
+                ].filter(Boolean).join(' ').toLowerCase();
+
+                // All terms must be found in the combined text string
+                return terms.every(term => searchableText.includes(term));
+            });
+
+            if (filteredImages.length === 0) {
+                showEmpty();
+                document.getElementById('load-more-container').style.display = 'none';
+            } else {
+                loadMoreImages();
+            }
+        }
+
+        // Load More Logic
+        function loadMoreImages() {
+            const nextBatch = filteredImages.slice(displayedCount, displayedCount + ITEMS_PER_PAGE);
+            displayGalleryBatch(nextBatch);
+            displayedCount += nextBatch.length;
+
+            // Show/Hide Load More button
+            const loadMoreBtn = document.getElementById('load-more-container');
+            if (displayedCount < filteredImages.length) {
+                loadMoreBtn.style.display = 'block';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
         }
 
         // Create gallery item element
@@ -574,23 +690,6 @@
                 month: 'short',
                 day: 'numeric'
             });
-        }
-
-        // Apply filters
-        function applyFilters() {
-            const year = document.getElementById('year-filter').value;
-            const eventName = document.getElementById('event-filter').value.trim();
-
-            currentFilters = { year, eventName };
-            fetchGalleryImages(currentFilters);
-        }
-
-        // Clear filters
-        function clearFilters() {
-            document.getElementById('year-filter').value = '';
-            document.getElementById('event-filter').value = '';
-            currentFilters = { year: '', eventName: '' };
-            fetchGalleryImages();
         }
 
         // Modal functions
@@ -654,12 +753,13 @@
 
         function hideEmpty() {
             document.getElementById('empty').style.display = 'none';
+            document.getElementById('gallery-grid').style.display = 'grid';
         }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function () {
             fetchYears();
-            fetchGalleryImages();
+            fetchGalleryImages(); // No args, fetches all
         });
     </script>
 </body>
