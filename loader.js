@@ -92,6 +92,48 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
       });
+
+      // Populate Execom years dropdown
+      (async function populateExecomYears() {
+        const dropdown = document.getElementById('execom-years-dropdown');
+        if (!dropdown) return;
+
+        try {
+          // Get API base URL - check if CONFIG exists, otherwise use default
+          const apiBaseUrl = (typeof CONFIG !== 'undefined' && CONFIG.API_BASE_URL) 
+            ? CONFIG.API_BASE_URL 
+            : 'http://127.0.0.1:8000/api';
+
+          // Fetch available years from API
+          const response = await fetch(`${apiBaseUrl}/allyears/`);
+          const data = await response.json();
+
+          if (data.allyears && Array.isArray(data.allyears)) {
+            // Sort years in descending order (newest first)
+            const years = data.allyears.sort((a, b) => b - a);
+
+            // Populate dropdown with years
+            years.forEach(year => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href = `/execom/?year=${year}`;
+              a.textContent = `Execom ${year}`;
+              li.appendChild(a);
+              dropdown.appendChild(li);
+            });
+          }
+        } catch (error) {
+          console.error('Error loading Execom years:', error);
+          // Fallback: add current year if API fails
+          const currentYear = new Date().getFullYear();
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `/execom/?year=${currentYear}`;
+          a.textContent = `Execom ${currentYear}`;
+          li.appendChild(a);
+          dropdown.appendChild(li);
+        }
+      })();
     });
 
   // Load footer from site root

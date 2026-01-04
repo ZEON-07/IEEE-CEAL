@@ -22,6 +22,10 @@ async function fetchAvailableYears() {
 
 async function fetchPeopleByYear(requestedYear) {
     try {
+        // Check if year was explicitly selected via URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const explicitYearSelection = urlParams.has('year');
+
         // First, get the list of available years
         const availableYears = await fetchAvailableYears();
         
@@ -30,44 +34,63 @@ async function fetchPeopleByYear(requestedYear) {
             return;
         }
 
-        // Try to fetch data for the requested year first
         let yearToTry = requestedYear;
         let foundData = false;
         let societies = null;
 
-        // If requested year is not in available years, start from the latest available year
-        if (!availableYears.includes(parseInt(requestedYear))) {
-            console.log(`Year ${requestedYear} not available. Trying latest available year.`);
-            yearToTry = availableYears[0];
-        }
-
-        // Try years in descending order until we find data
-        for (const year of availableYears) {
-            // Skip years newer than requested year
-            if (year > requestedYear) {
-                continue;
-            }
-
+        // If year was explicitly selected from dropdown, only try that year
+        if (explicitYearSelection) {
             try {
-                const res = await fetch(`${CONFIG.API_BASE_URL}/GetExecomDataByYear/${year}/`);
+                const res = await fetch(`${CONFIG.API_BASE_URL}/GetExecomDataByYear/${requestedYear}/`);
                 const response = await res.json();
 
                 // Check if we got valid data
                 if (response.status !== 'error' && response.heading && Object.keys(response.heading.Society).length > 0) {
                     societies = response.heading.Society;
-                    yearToTry = year;
+                    yearToTry = requestedYear;
                     foundData = true;
-                    break;
+                } else {
+                    // No data for this year, but show the year anyway
+                    document.getElementById('ExecomMainText').innerHTML = `IEEE CEAL ${requestedYear} EXECOM`;
+                    showEmptyState(`No execom data available for year ${requestedYear}.`);
+                    return;
                 }
             } catch (error) {
-                console.error(`Error fetching data for year ${year}:`, error);
-                // Continue to next year
+                console.error(`Error fetching data for year ${requestedYear}:`, error);
+                document.getElementById('ExecomMainText').innerHTML = `IEEE CEAL ${requestedYear} EXECOM`;
+                showEmptyState(`Failed to load execom data for year ${requestedYear}.`);
+                return;
             }
-        }
+        } else {
+            // No explicit year selection - use fallback logic to find latest year with data
+            // Try years in descending order until we find data
+            for (const year of availableYears) {
+                // Skip years newer than requested year
+                if (year > requestedYear) {
+                    continue;
+                }
 
-        if (!foundData || !societies || societies.length === 0) {
-            alert('No execom data available for any year. Please check back later.');
-            return;
+                try {
+                    const res = await fetch(`${CONFIG.API_BASE_URL}/GetExecomDataByYear/${year}/`);
+                    const response = await res.json();
+
+                    // Check if we got valid data
+                    if (response.status !== 'error' && response.heading && Object.keys(response.heading.Society).length > 0) {
+                        societies = response.heading.Society;
+                        yearToTry = year;
+                        foundData = true;
+                        break;
+                    }
+                } catch (error) {
+                    console.error(`Error fetching data for year ${year}:`, error);
+                    // Continue to next year
+                }
+            }
+
+            if (!foundData || !societies || societies.length === 0) {
+                showEmptyState('No execom data available for any year. Please check back later.');
+                return;
+            }
         }
 
         // Update the page title with the actual year being displayed
@@ -146,4 +169,53 @@ function toTitleCase(str) {
         return "";
     }
     return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+}
+
+// Show empty state when no data is available
+function showEmptyState(message) {
+    const teamDiv = document.getElementById('team');
+    teamDiv.innerHTML = `
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 400px;
+        ">
+            <i class="fas fa-users-slash" style="
+                font-size: 5rem;
+                color: var(--text-light);
+                margin-bottom: 2rem;
+                opacity: 0.5;
+            "></i>
+            <h2 style="
+                font-size: 2rem;
+                color: var(--text-dark);
+                margin-bottom: 1rem;
+                font-weight: 600;
+            ">No Data Available</h2>
+            <p style="
+                font-size: 1.2rem;
+                color: var(--text-light);
+                max-width: 600px;
+                line-height: 1.6;
+            ">${message}</p>
+            <a href="/execom/" style="
+                margin-top: 2rem;
+                background: var(--gradient-primary);
+                color: white;
+                padding: 12px 30px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: var(--transition);
+                display: inline-block;
+            " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0, 85, 164, 0.3)'"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                View Latest Execom
+            </a>
+        </div>
+    `;
 }
